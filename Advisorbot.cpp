@@ -1,4 +1,5 @@
 #include "Advisorbot.h"
+#include "CSVReader.h"
 
 #include <string>
 #include <iostream>
@@ -16,11 +17,19 @@ void Advisorbot::init()
 
     while (true)
     {
+        loadOrderBook();
         advisorbotCommand();
         input = getUserCommand();
         processUserCommand(input);
     }
 };
+
+/* Loads CSV file */
+void Advisorbot::loadOrderBook()
+{
+    // Returns vector of order book entries
+    orders = CSVReader::readCSV("20200601.csv");
+}
 
 /** Initiate command of advisorbot */
 void Advisorbot::advisorbotCommand()
@@ -127,8 +136,25 @@ void Advisorbot::helpCmd(std::string input)
     }
 };
 
-void Advisorbot::prod(){
+void Advisorbot::prod()
+{
+    // TEST - Counts asks and bids
+    unsigned int bids = 0;
+    unsigned int asks = 0;
 
+    for (OrderBookEntry &e : orders)
+    {
+        if (e.orderType == OrderBookType::ask)
+        {
+            asks++;
+        }
+        if (e.orderType == OrderBookType::bid)
+        {
+            bids++;
+        }
+    }
+
+    std::cout << "OrderBook asks: " << asks << " bids: " << bids << std::endl;
 };
 
 void Advisorbot::min(){

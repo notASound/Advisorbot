@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include "OrderBookEntry.h"
 
 class Advisorbot
 {
@@ -12,6 +13,7 @@ public:
 
 private:
   // Functions to implement in cpp file
+  void loadOrderBook();
   void advisorbotCommand();
   std::string getUserCommand();
   void processUserCommand(std::string userCommand);
@@ -25,6 +27,8 @@ private:
   void time();
   void step();
   void ownCommand();
+
+  std::vector<OrderBookEntry> orders;
 
   // std::string currentTime;
 
