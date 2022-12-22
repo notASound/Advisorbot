@@ -90,12 +90,41 @@ void Advisorbot::processUserCommand(std::string input)
     }
 };
 
-void Advisorbot::help(){
-
+void Advisorbot::help()
+{
+    std::cout << "List of available commands: help, help <cmd>, prod, min, max, avg, predict, time, step, ownCommand" << std::endl;
 };
 
-void Advisorbot::helpCmd(std::string input){
-
+void Advisorbot::helpCmd(std::string input)
+{
+    if (input == "help prod")
+    {
+        std::cout << "List of available products" << std::endl;
+    }
+    if (input == "help min")
+    {
+        std::cout << "Find minimum bid or ask for product in current time step" << std::endl;
+    }
+    if (input == "help max")
+    {
+        std::cout << "Find maximum bid or ask for product in current time step" << std::endl;
+    }
+    if (input == "help avg")
+    {
+        std::cout << "Compute average ask or bid for the sent product over the sent number of time steps" << std::endl;
+    }
+    if (input == "help predict")
+    {
+        std::cout << "Predict max or min ask or bid for the sent product for the next time step" << std::endl;
+    }
+    if (input == "help time")
+    {
+        std::cout << "State current time in dataset, i.e. which timeframe are we looking at" << std::endl;
+    }
+    if (input == "help step")
+    {
+        std::cout << "Move to the next time step" << std::endl;
+    }
 };
 
 void Advisorbot::prod(){
