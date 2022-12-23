@@ -4,6 +4,7 @@
 #include <vector>
 #include "OrderBookEntry.h"
 #include "OrderBook.h"
+#include "CSVReader.h"
 
 class Advisorbot
 {
@@ -13,19 +14,21 @@ public:
   void init();
 
 private:
-  // Functions to implement in cpp file
   // void loadOrderBook();
   void advisorbotCommand();
   std::string getUserCommand();
+  // std::vector<std::string> tokeniseUserCommand(); - week 8 - Read a line from the user
   void processUserCommand(std::string userCommand);
   void help();
   void helpCmd(std::string input);
   void prod();
+
+  // Functions to implement in cpp file
   void min();
   void max();
   void avg();
   void predict();
-  void time();
+  void time(); // week 7 - dealing with time
   void step();
   void ownCommand();
 

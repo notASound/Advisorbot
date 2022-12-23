@@ -50,6 +50,8 @@ std::string Advisorbot::getUserCommand()
     return userCommand;
 };
 
+// std::vector<std::string> Advisorbot::tokeniseUserCommand(){};
+
 /** Process user command */
 void Advisorbot::processUserCommand(std::string input)
 {
@@ -148,41 +150,33 @@ void Advisorbot::prod()
     {
         std::cout << i << ' ' << std::endl; // will print: "a b c"
     }
-
-    // for (std::string const &p : orderBook.getKnownProducts())
-    // {
-    //     std::cout << "Product: " << p << std::endl;
-    // }
-
-    // requires loadOrderBook() whitch will be replaced by OrderBook functions
-
-    // TEST - Counts asks and bids
-    // unsigned int bids = 0;
-    // unsigned int asks = 0;
-
-    // for (OrderBookEntry &e : orders)
-    // {
-    //     if (e.orderType == OrderBookType::ask)
-    //     {
-    //         asks++;
-    //     }
-    //     if (e.orderType == OrderBookType::bid)
-    //     {
-    //         bids++;
-    //     }
-    // };
-
-    // std::cout << "OrderBook asks: " << asks << " bids: " << bids << std::endl;
-
-    // Print available products
 };
 
-void Advisorbot::min(){
-
+void Advisorbot::min()
+{
+    {
+        for (std::string const &p : orderBook.getKnownProducts())
+        {
+            std::cout << "Product: " << p << std::endl;
+            std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask,
+                                                                      p,
+                                                                      "2020/06/01 11:57:30.328127");
+            std::cout << "Asks seen: " << entries.size() << std::endl;
+            std::cout << "Min ask: " << OrderBook::getLowPrice(entries) << std::endl;
+        }
+    };
 };
 void Advisorbot::max()
 {
-    std::cout << "max" << std::endl;
+    for (std::string const &p : orderBook.getKnownProducts())
+    {
+        std::cout << "Product: " << p << std::endl;
+        std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask,
+                                                                  p,
+                                                                  "2020/06/01 11:57:30.328127");
+        std::cout << "Asks seen: " << entries.size() << std::endl;
+        std::cout << "Max ask: " << OrderBook::getHighPrice(entries) << std::endl;
+    }
 };
 void Advisorbot::avg()
 {
