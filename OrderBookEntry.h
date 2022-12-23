@@ -42,5 +42,4 @@ public:
     std::string timestamp;
     std::string product;
     OrderBookType orderType;
-    std::string username;
 };

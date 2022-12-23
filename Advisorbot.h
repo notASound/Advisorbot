@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "OrderBookEntry.h"
+#include "OrderBook.h"
 
 class Advisorbot
 {
@@ -13,7 +14,7 @@ public:
 
 private:
   // Functions to implement in cpp file
-  void loadOrderBook();
+  // void loadOrderBook();
   void advisorbotCommand();
   std::string getUserCommand();
   void processUserCommand(std::string userCommand);
@@ -28,7 +29,7 @@ private:
   void step();
   void ownCommand();
 
-  std::vector<OrderBookEntry> orders;
+  OrderBook orderBook{"20200317.csv"};
 
   // std::string currentTime;
 

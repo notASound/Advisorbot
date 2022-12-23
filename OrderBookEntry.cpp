@@ -10,12 +10,10 @@ OrderBookEntry::OrderBookEntry(double _price,
       amount(_amount),
       timestamp(_timestamp),
       product(_product),
-      orderType(_orderType),
-      username(_username)
+      orderType(_orderType)
 {
 }
 
-// Defines if OrderBookEntry is of type ask or bid
 OrderBookType OrderBookEntry::stringToOrderBookType(std::string s)
 {
   if (s == "ask")

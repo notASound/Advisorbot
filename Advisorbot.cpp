@@ -15,9 +15,11 @@ void Advisorbot::init()
     /* Need so be checked out!*/
     // currentTime = orderBook.getEarliestTime();
 
+    // loadOrderBook(); - it will be replaced by OrderBook functions
+
     while (true)
     {
-        loadOrderBook();
+
         advisorbotCommand();
         input = getUserCommand();
         processUserCommand(input);
@@ -25,11 +27,12 @@ void Advisorbot::init()
 };
 
 /* Loads CSV file */
-void Advisorbot::loadOrderBook()
-{
-    // Returns vector of order book entries
-    orders = CSVReader::readCSV("20200601.csv");
-}
+
+// void Advisorbot::loadOrderBook() - will be replaced with OrderBook class
+// {
+//     // Returns vector of order book entries
+//     orders = CSVReader::readCSV("20200601.csv");
+// }
 
 /** Initiate command of advisorbot */
 void Advisorbot::advisorbotCommand()
@@ -136,25 +139,29 @@ void Advisorbot::helpCmd(std::string input)
     }
 };
 
-void Advisorbot::prod()
-{
+void Advisorbot::prod(){
+
+    // requires loadOrderBook() whitch will be replaced by OrderBook functions
+
     // TEST - Counts asks and bids
-    unsigned int bids = 0;
-    unsigned int asks = 0;
+    // unsigned int bids = 0;
+    // unsigned int asks = 0;
 
-    for (OrderBookEntry &e : orders)
-    {
-        if (e.orderType == OrderBookType::ask)
-        {
-            asks++;
-        }
-        if (e.orderType == OrderBookType::bid)
-        {
-            bids++;
-        }
-    }
+    // for (OrderBookEntry &e : orders)
+    // {
+    //     if (e.orderType == OrderBookType::ask)
+    //     {
+    //         asks++;
+    //     }
+    //     if (e.orderType == OrderBookType::bid)
+    //     {
+    //         bids++;
+    //     }
+    // };
 
-    std::cout << "OrderBook asks: " << asks << " bids: " << bids << std::endl;
+    // std::cout << "OrderBook asks: " << asks << " bids: " << bids << std::endl;
+
+    // Print available products
 };
 
 void Advisorbot::min(){
