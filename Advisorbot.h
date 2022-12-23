@@ -29,7 +29,7 @@ private:
   void step();
   void ownCommand();
 
-  OrderBook orderBook{"20200317.csv"};
+  OrderBook orderBook{"20200601.csv"};
 
   // std::string currentTime;
 

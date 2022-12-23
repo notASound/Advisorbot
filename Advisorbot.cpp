@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 Advisorbot::Advisorbot()
 {
@@ -139,7 +140,19 @@ void Advisorbot::helpCmd(std::string input)
     }
 };
 
-void Advisorbot::prod(){
+void Advisorbot::prod()
+{
+    std::cout << "Available products: " << std::endl;
+    std::vector<std::string> products = orderBook.getKnownProducts();
+    for (auto i : products)
+    {
+        std::cout << i << ' ' << std::endl; // will print: "a b c"
+    }
+
+    // for (std::string const &p : orderBook.getKnownProducts())
+    // {
+    //     std::cout << "Product: " << p << std::endl;
+    // }
 
     // requires loadOrderBook() whitch will be replaced by OrderBook functions
 
