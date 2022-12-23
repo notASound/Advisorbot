@@ -1,5 +1,6 @@
 #include "Advisorbot.h"
 #include "CSVReader.h"
+#include "OrderBook.h"
 
 #include <string>
 #include <iostream>
@@ -12,11 +13,7 @@ Advisorbot::Advisorbot()
 void Advisorbot::init()
 {
     std::string input;
-
-    /* Need so be checked out!*/
-    // currentTime = orderBook.getEarliestTime();
-
-    // loadOrderBook(); - it will be replaced by OrderBook functions
+    currentTime = orderBook.getEarliestTime();
 
     while (true)
     {
@@ -160,7 +157,7 @@ void Advisorbot::min()
             std::cout << "Product: " << p << std::endl;
             std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask,
                                                                       p,
-                                                                      "2020/06/01 11:57:30.328127");
+                                                                      currentTime);
             std::cout << "Asks seen: " << entries.size() << std::endl;
             std::cout << "Min ask: " << OrderBook::getLowPrice(entries) << std::endl;
         }
@@ -173,7 +170,7 @@ void Advisorbot::max()
         std::cout << "Product: " << p << std::endl;
         std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask,
                                                                   p,
-                                                                  "2020/06/01 11:57:30.328127");
+                                                                  currentTime);
         std::cout << "Asks seen: " << entries.size() << std::endl;
         std::cout << "Max ask: " << OrderBook::getHighPrice(entries) << std::endl;
     }
@@ -188,11 +185,12 @@ void Advisorbot::predict()
 };
 void Advisorbot::time()
 {
-    std::cout << "time" << std::endl;
+    std::cout << "Current time is " << currentTime << std::endl;
 };
 void Advisorbot::step()
 {
     std::cout << "step" << std::endl;
+    currentTime = orderBook.getNextTime(currentTime);
 };
 
 void Advisorbot::ownCommand()

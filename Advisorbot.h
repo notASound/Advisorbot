@@ -19,22 +19,21 @@ private:
   std::string getUserCommand();
   // std::vector<std::string> tokeniseUserCommand(); - week 8 - Read a line from the user
   void processUserCommand(std::string userCommand);
-  void help();
-  void helpCmd(std::string input);
-  void prod();
+  void help();                     // OK
+  void helpCmd(std::string input); // OK
+  void prod();                     // OK
 
-  // Functions to implement in cpp file
   void min();
   void max();
   void avg();
   void predict();
-  void time(); // week 7 - dealing with time
-  void step();
+  void time(); // OK
+  void step(); // OK
   void ownCommand();
 
   OrderBook orderBook{"20200601.csv"};
 
-  // std::string currentTime;
+  std::string currentTime;
 
   // OrderBook orderBook{"20200601.csv"};
 };
