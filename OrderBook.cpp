@@ -31,7 +31,7 @@ std::vector<std::string> OrderBook::getKnownProducts()
     return products;
 };
 
-/** return vector of all known products in the dataset */
+/** return vector of all unique timestamps in the dataset */
 std::vector<std::string> OrderBook::getTimestamps()
 {
     std::vector<std::string> timestamp;
@@ -48,7 +48,7 @@ std::vector<std::string> OrderBook::getTimestamps()
     {
         timestamp.push_back(e.first);
     }
-    // Products  should contain an unique list of products
+    // Timestamp  should contain an unique list of timestamps
     return timestamp;
 };
 /** return vector of Orders according to the sent filters */
@@ -108,9 +108,6 @@ double OrderBook::getAveragePrice(std::vector<OrderBookEntry> &orders)
     {
         avg = avg + e.price;
     }
-    // std::cout << "Sum is " << avg << std::endl;
-    // std::cout << "orders.size() is " << orders.size() << std::endl;
-    // std::cout << "Average is " << avg / orders.size() << std::endl;
     return avg / orders.size();
 };
 
