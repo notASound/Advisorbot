@@ -9,6 +9,8 @@
 class Advisorbot
 {
 
+  // TASK 3 - Iterating over vectors and memory - week 7
+
 public:
   Advisorbot();
   void init();
@@ -16,24 +18,24 @@ public:
 private:
   // void loadOrderBook();
   void advisorbotCommand();
-  std::string getUserCommand();
-  // std::vector<std::string> tokeniseUserCommand(); - week 8 - Read a line from the user
-  void processUserCommand(std::string userCommand);
-  void help();                     // OK
-  void helpCmd(std::string input); // OK
-  void prod();                     // OK
+  std::vector<std::string> getUserCommand();
+  void processUserCommand(std::vector<std::string> userCommand);
+  void help();                                  // OK
+  void helpCmd(std::vector<std::string> input); // OK
+  void prod();                                  // OK
 
-  void min();
-  void max();
-  void avg();
+  void min(std::vector<std::string> input); // OK
+  void max(std::vector<std::string> input); // OK
+  void avg(std::vector<std::string> input);
   void predict();
   void time(); // OK
   void step(); // OK
   void ownCommand();
 
+  // Helper functions
+  OrderBookType askOrBid(std::vector<std::string> input);
+
   OrderBook orderBook{"20200601.csv"};
 
   std::string currentTime;
-
-  // OrderBook orderBook{"20200601.csv"};
 };

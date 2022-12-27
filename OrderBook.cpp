@@ -2,6 +2,7 @@
 #include "CSVReader.h"
 #include "OrderBookEntry.h"
 #include <map>
+#include <iostream>
 
 /** construct, reading a csv data file */
 OrderBook::OrderBook(std::string filename)
@@ -21,7 +22,6 @@ std::vector<std::string> OrderBook::getKnownProducts()
         // Get list of unique products to a map
         prodMap[e.product] = true;
     }
-
     // Flatten the map to a vector of strings
     for (auto const &e : prodMap)
     {
@@ -29,6 +29,27 @@ std::vector<std::string> OrderBook::getKnownProducts()
     }
     // Products  should contain an unique list of products
     return products;
+};
+
+/** return vector of all known products in the dataset */
+std::vector<std::string> OrderBook::getTimestamps()
+{
+    std::vector<std::string> timestamp;
+
+    std::map<std::string, bool> timestampMap;
+
+    for (OrderBookEntry &e : orders)
+    {
+        // Get list of timestamps to a map
+        timestampMap[e.timestamp] = true;
+    }
+    // Flatten the map to a vector of strings
+    for (auto const &e : timestampMap)
+    {
+        timestamp.push_back(e.first);
+    }
+    // Products  should contain an unique list of products
+    return timestamp;
 };
 /** return vector of Orders according to the sent filters */
 std::vector<OrderBookEntry> OrderBook::getOrders(OrderBookType type,
@@ -43,6 +64,7 @@ std::vector<OrderBookEntry> OrderBook::getOrders(OrderBookType type,
             e.product == product &&
             e.timestamp == timestamp)
         {
+            // std::cout << e.price << std::endl;
             orders_sub.push_back(e);
         }
     }
@@ -76,6 +98,20 @@ double OrderBook::getLowPrice(std::vector<OrderBookEntry> &orders)
         }
     }
     return min;
+};
+
+double OrderBook::getAveragePrice(std::vector<OrderBookEntry> &orders)
+{
+    // Iterates over orders and sums up prices
+    double avg;
+    for (OrderBookEntry &e : orders)
+    {
+        avg = avg + e.price;
+    }
+    // std::cout << "Sum is " << avg << std::endl;
+    // std::cout << "orders.size() is " << orders.size() << std::endl;
+    // std::cout << "Average is " << avg / orders.size() << std::endl;
+    return avg / orders.size();
 };
 
 std::string OrderBook::getEarliestTime()
