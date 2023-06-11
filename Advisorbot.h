@@ -22,12 +22,15 @@ private:
   void min(std::vector<std::string> input);     // OK
   void max(std::vector<std::string> input);     // OK
   void avg(std::vector<std::string> input);     // OK
+  void predict(std::vector<std::string> input); // OK
   void time();                                  // OK
   void step();                                  // OK
   void info(std::vector<std::string> input);    // OK
 
-  // Helper functions
-  OrderBookType askOrBid(std::vector<std::string> input);
   OrderBook orderBook{"20200601.csv"};
   std::string currentTime;
+
+  // Helper functions
+  OrderBookType askOrBid(std::vector<std::string> input);
+  double predictPrice(std::vector<double> average);
 };
